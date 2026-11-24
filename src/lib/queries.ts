@@ -73,7 +73,7 @@ export const bundleQuery = (id: string) =>
     },
   });
 
-export function bundleFromPublic(payload: NonNullable<Awaited<ReturnType<typeof import("./public-report.functions").getPublicReport>>>): InvestigationBundle {
+export function bundleFromPublic(payload: any): InvestigationBundle {
   const inv = payload.investigation as unknown as InvestigationRow;
   return {
     mode: "public",

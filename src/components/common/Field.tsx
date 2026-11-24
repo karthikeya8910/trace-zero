@@ -4,7 +4,7 @@ import { Eye, EyeOff } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 
-export function Field({ label, error, hint, type, ...props }: ComponentProps<typeof Input> & { label: string; error?: string | null; hint?: string }) {
+export function Field({ label, error, hint, type, ...props }: ComponentProps<typeof Input> & { label: string; error?: string | null | undefined; hint?: string | undefined }) {
   const id = useId();
   const [visible, setVisible] = useState(false);
   const isPassword = type === "password";

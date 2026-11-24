@@ -10,33 +10,195 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as DemoRouteImport } from './routes/demo'
+import { Route as ResetPasswordRouteImport } from './routes/reset-password'
+import { Route as AuthenticatedWorkspaceRouteRouteImport } from './routes/_authenticated/_workspace/route'
+import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
+import { Route as AuthenticatedWorkspaceDuelRouteImport } from './routes/_authenticated/_workspace/duel'
+import { Route as AuthenticatedWorkspaceEvidenceRouteImport } from './routes/_authenticated/_workspace/evidence'
+import { Route as AuthenticatedWorkspaceInvestigateRouteImport } from './routes/_authenticated/_workspace/investigate'
+import { Route as AuthenticatedWorkspaceInvestigationsRouteImport } from './routes/_authenticated/_workspace/investigations'
+import { Route as AuthenticatedWorkspaceOverviewRouteImport } from './routes/_authenticated/_workspace/overview'
+import { Route as AuthenticatedWorkspaceReportsRouteImport } from './routes/_authenticated/_workspace/reports'
+import { Route as AuthenticatedWorkspaceSettingsRouteImport } from './routes/_authenticated/_workspace/settings'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
+  id: '/_authenticated',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DemoRoute = DemoRouteImport.update({
+  id: '/demo',
+  path: '/demo',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ResetPasswordRoute = ResetPasswordRouteImport.update({
+  id: '/reset-password',
+  path: '/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthenticatedWorkspaceRouteRoute =
+  AuthenticatedWorkspaceRouteRouteImport.update({
+    id: '/_workspace',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
+const AuthenticatedOnboardingRoute = AuthenticatedOnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const AuthenticatedWorkspaceDuelRoute =
+  AuthenticatedWorkspaceDuelRouteImport.update({
+    id: '/duel',
+    path: '/duel',
+    getParentRoute: () => AuthenticatedWorkspaceRouteRoute,
+  } as any)
+const AuthenticatedWorkspaceEvidenceRoute =
+  AuthenticatedWorkspaceEvidenceRouteImport.update({
+    id: '/evidence',
+    path: '/evidence',
+    getParentRoute: () => AuthenticatedWorkspaceRouteRoute,
+  } as any)
+const AuthenticatedWorkspaceInvestigateRoute =
+  AuthenticatedWorkspaceInvestigateRouteImport.update({
+    id: '/investigate',
+    path: '/investigate',
+    getParentRoute: () => AuthenticatedWorkspaceRouteRoute,
+  } as any)
+const AuthenticatedWorkspaceInvestigationsRoute =
+  AuthenticatedWorkspaceInvestigationsRouteImport.update({
+    id: '/investigations',
+    path: '/investigations',
+    getParentRoute: () => AuthenticatedWorkspaceRouteRoute,
+  } as any)
+const AuthenticatedWorkspaceOverviewRoute =
+  AuthenticatedWorkspaceOverviewRouteImport.update({
+    id: '/overview',
+    path: '/overview',
+    getParentRoute: () => AuthenticatedWorkspaceRouteRoute,
+  } as any)
+const AuthenticatedWorkspaceReportsRoute =
+  AuthenticatedWorkspaceReportsRouteImport.update({
+    id: '/reports',
+    path: '/reports',
+    getParentRoute: () => AuthenticatedWorkspaceRouteRoute,
+  } as any)
+const AuthenticatedWorkspaceSettingsRoute =
+  AuthenticatedWorkspaceSettingsRouteImport.update({
+    id: '/settings',
+    path: '/settings',
+    getParentRoute: () => AuthenticatedWorkspaceRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/demo': typeof DemoRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/duel': typeof AuthenticatedWorkspaceDuelRoute
+  '/evidence': typeof AuthenticatedWorkspaceEvidenceRoute
+  '/investigate': typeof AuthenticatedWorkspaceInvestigateRoute
+  '/investigations': typeof AuthenticatedWorkspaceInvestigationsRoute
+  '/overview': typeof AuthenticatedWorkspaceOverviewRoute
+  '/reports': typeof AuthenticatedWorkspaceReportsRoute
+  '/settings': typeof AuthenticatedWorkspaceSettingsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/demo': typeof DemoRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/duel': typeof AuthenticatedWorkspaceDuelRoute
+  '/evidence': typeof AuthenticatedWorkspaceEvidenceRoute
+  '/investigate': typeof AuthenticatedWorkspaceInvestigateRoute
+  '/investigations': typeof AuthenticatedWorkspaceInvestigationsRoute
+  '/overview': typeof AuthenticatedWorkspaceOverviewRoute
+  '/reports': typeof AuthenticatedWorkspaceReportsRoute
+  '/settings': typeof AuthenticatedWorkspaceSettingsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/demo': typeof DemoRoute
+  '/reset-password': typeof ResetPasswordRoute
+  '/_authenticated/_workspace': typeof AuthenticatedWorkspaceRouteRouteWithChildren
+  '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
+  '/_authenticated/_workspace/duel': typeof AuthenticatedWorkspaceDuelRoute
+  '/_authenticated/_workspace/evidence': typeof AuthenticatedWorkspaceEvidenceRoute
+  '/_authenticated/_workspace/investigate': typeof AuthenticatedWorkspaceInvestigateRoute
+  '/_authenticated/_workspace/investigations': typeof AuthenticatedWorkspaceInvestigationsRoute
+  '/_authenticated/_workspace/overview': typeof AuthenticatedWorkspaceOverviewRoute
+  '/_authenticated/_workspace/reports': typeof AuthenticatedWorkspaceReportsRoute
+  '/_authenticated/_workspace/settings': typeof AuthenticatedWorkspaceSettingsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/auth'
+    | '/demo'
+    | '/reset-password'
+    | '/onboarding'
+    | '/duel'
+    | '/evidence'
+    | '/investigate'
+    | '/investigations'
+    | '/overview'
+    | '/reports'
+    | '/settings'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/demo'
+    | '/reset-password'
+    | '/onboarding'
+    | '/duel'
+    | '/evidence'
+    | '/investigate'
+    | '/investigations'
+    | '/overview'
+    | '/reports'
+    | '/settings'
+  id:
+    | '__root__'
+    | '/'
+    | '/_authenticated'
+    | '/auth'
+    | '/demo'
+    | '/reset-password'
+    | '/_authenticated/_workspace'
+    | '/_authenticated/onboarding'
+    | '/_authenticated/_workspace/duel'
+    | '/_authenticated/_workspace/evidence'
+    | '/_authenticated/_workspace/investigate'
+    | '/_authenticated/_workspace/investigations'
+    | '/_authenticated/_workspace/overview'
+    | '/_authenticated/_workspace/reports'
+    | '/_authenticated/_workspace/settings'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  DemoRoute: typeof DemoRoute
+  ResetPasswordRoute: typeof ResetPasswordRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +210,148 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_authenticated': {
+      id: '/_authenticated'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedRouteRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/demo': {
+      id: '/demo'
+      path: '/demo'
+      fullPath: '/demo'
+      preLoaderRoute: typeof DemoRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/reset-password': {
+      id: '/reset-password'
+      path: '/reset-password'
+      fullPath: '/reset-password'
+      preLoaderRoute: typeof ResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/_workspace': {
+      id: '/_authenticated/_workspace'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AuthenticatedWorkspaceRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/onboarding': {
+      id: '/_authenticated/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof AuthenticatedOnboardingRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
+    '/_authenticated/_workspace/duel': {
+      id: '/_authenticated/_workspace/duel'
+      path: '/duel'
+      fullPath: '/duel'
+      preLoaderRoute: typeof AuthenticatedWorkspaceDuelRouteImport
+      parentRoute: typeof AuthenticatedWorkspaceRouteRoute
+    }
+    '/_authenticated/_workspace/evidence': {
+      id: '/_authenticated/_workspace/evidence'
+      path: '/evidence'
+      fullPath: '/evidence'
+      preLoaderRoute: typeof AuthenticatedWorkspaceEvidenceRouteImport
+      parentRoute: typeof AuthenticatedWorkspaceRouteRoute
+    }
+    '/_authenticated/_workspace/investigate': {
+      id: '/_authenticated/_workspace/investigate'
+      path: '/investigate'
+      fullPath: '/investigate'
+      preLoaderRoute: typeof AuthenticatedWorkspaceInvestigateRouteImport
+      parentRoute: typeof AuthenticatedWorkspaceRouteRoute
+    }
+    '/_authenticated/_workspace/investigations': {
+      id: '/_authenticated/_workspace/investigations'
+      path: '/investigations'
+      fullPath: '/investigations'
+      preLoaderRoute: typeof AuthenticatedWorkspaceInvestigationsRouteImport
+      parentRoute: typeof AuthenticatedWorkspaceRouteRoute
+    }
+    '/_authenticated/_workspace/overview': {
+      id: '/_authenticated/_workspace/overview'
+      path: '/overview'
+      fullPath: '/overview'
+      preLoaderRoute: typeof AuthenticatedWorkspaceOverviewRouteImport
+      parentRoute: typeof AuthenticatedWorkspaceRouteRoute
+    }
+    '/_authenticated/_workspace/reports': {
+      id: '/_authenticated/_workspace/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof AuthenticatedWorkspaceReportsRouteImport
+      parentRoute: typeof AuthenticatedWorkspaceRouteRoute
+    }
+    '/_authenticated/_workspace/settings': {
+      id: '/_authenticated/_workspace/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AuthenticatedWorkspaceSettingsRouteImport
+      parentRoute: typeof AuthenticatedWorkspaceRouteRoute
+    }
   }
 }
 
+interface AuthenticatedWorkspaceRouteRouteChildren {
+  AuthenticatedWorkspaceDuelRoute: typeof AuthenticatedWorkspaceDuelRoute
+  AuthenticatedWorkspaceEvidenceRoute: typeof AuthenticatedWorkspaceEvidenceRoute
+  AuthenticatedWorkspaceInvestigateRoute: typeof AuthenticatedWorkspaceInvestigateRoute
+  AuthenticatedWorkspaceInvestigationsRoute: typeof AuthenticatedWorkspaceInvestigationsRoute
+  AuthenticatedWorkspaceOverviewRoute: typeof AuthenticatedWorkspaceOverviewRoute
+  AuthenticatedWorkspaceReportsRoute: typeof AuthenticatedWorkspaceReportsRoute
+  AuthenticatedWorkspaceSettingsRoute: typeof AuthenticatedWorkspaceSettingsRoute
+}
+
+const AuthenticatedWorkspaceRouteRouteChildren: AuthenticatedWorkspaceRouteRouteChildren =
+  {
+    AuthenticatedWorkspaceDuelRoute: AuthenticatedWorkspaceDuelRoute,
+    AuthenticatedWorkspaceEvidenceRoute: AuthenticatedWorkspaceEvidenceRoute,
+    AuthenticatedWorkspaceInvestigateRoute:
+      AuthenticatedWorkspaceInvestigateRoute,
+    AuthenticatedWorkspaceInvestigationsRoute:
+      AuthenticatedWorkspaceInvestigationsRoute,
+    AuthenticatedWorkspaceOverviewRoute: AuthenticatedWorkspaceOverviewRoute,
+    AuthenticatedWorkspaceReportsRoute: AuthenticatedWorkspaceReportsRoute,
+    AuthenticatedWorkspaceSettingsRoute: AuthenticatedWorkspaceSettingsRoute,
+  }
+
+const AuthenticatedWorkspaceRouteRouteWithChildren =
+  AuthenticatedWorkspaceRouteRoute._addFileChildren(
+    AuthenticatedWorkspaceRouteRouteChildren,
+  )
+
+interface AuthenticatedRouteRouteChildren {
+  AuthenticatedWorkspaceRouteRoute: typeof AuthenticatedWorkspaceRouteRouteWithChildren
+  AuthenticatedOnboardingRoute: typeof AuthenticatedOnboardingRoute
+}
+
+const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
+  AuthenticatedWorkspaceRouteRoute:
+    AuthenticatedWorkspaceRouteRouteWithChildren,
+  AuthenticatedOnboardingRoute: AuthenticatedOnboardingRoute,
+}
+
+const AuthenticatedRouteRouteWithChildren =
+  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  AuthRoute: AuthRoute,
+  DemoRoute: DemoRoute,
+  ResetPasswordRoute: ResetPasswordRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

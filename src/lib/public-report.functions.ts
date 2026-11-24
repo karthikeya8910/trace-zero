@@ -26,10 +26,10 @@ export const getPublicReport = createServerFn({ method: "GET" })
     const { data: payload, error } = await client.rpc("get_public_report", { _token: data.token });
     if (error) throw new Error("This report could not be loaded.");
     return (payload ?? null) as unknown as null | {
-      report: { id: string; report_content: unknown; published_at: string | null; created_at: string };
-      investigation: Record<string, unknown>;
-      claims: Record<string, unknown>[];
-      sources: Record<string, unknown>[];
-      evidence: Record<string, unknown>[];
+      report: { id: string; report_content: any; published_at: string | null; created_at: string };
+      investigation: Record<string, any>;
+      claims: Record<string, any>[];
+      sources: Record<string, any>[];
+      evidence: Record<string, any>[];
     };
   });

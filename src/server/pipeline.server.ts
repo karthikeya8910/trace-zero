@@ -566,7 +566,7 @@ Never introduce facts that are not in the evidence. Never call something debunke
   // Replace [S#] markers with stable source ids so citations survive re-ordering.
   const cite = (s: string) => s.replace(/\[S(\d+)\]/g, (m, n: string) => (refs.get(`S${n}`) ? `[src:${refs.get(`S${n}`)}]` : ""));
   report.reasoning = cite(report.reasoning ?? "");
-  report.known = report.known?.map(cite);
+  report.known = (report.known ?? []).map(cite);
 
   await admin.from("reports").upsert({ investigation_id: inv.id, report_content: report as unknown as Json }, { onConflict: "investigation_id" });
   const ok = await transition(admin, inv, {
