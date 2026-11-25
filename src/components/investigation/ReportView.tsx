@@ -4,7 +4,7 @@ import type { ReportContent, SourceRow } from "@/lib/domain";
 import { Panel } from "@/components/common/States";
 
 /** Renders report prose, turning [src:<id>] citations into reference chips. */
-function Cited({ text, sources, onSource }: { text: string; sources: SourceRow[]; onSource?: (id: string) => void }) {
+function Cited({ text, sources, onSource }: { text: string; sources: SourceRow[]; onSource?: ((id: string) => void) | undefined }) {
   const parts = text.split(/(\[src:[^\]]+\])/g);
   return (
     <>
@@ -30,7 +30,7 @@ function Cited({ text, sources, onSource }: { text: string; sources: SourceRow[]
   );
 }
 
-export function ReportView({ content, sources, onSource }: { content: ReportContent; sources: SourceRow[]; onSource?: (id: string) => void }) {
+export function ReportView({ content, sources, onSource }: { content: ReportContent; sources: SourceRow[]; onSource?: ((id: string) => void) | undefined }) {
   const cite = (text: string): ReactNode => <Cited text={text} sources={sources} onSource={onSource} />;
   return (
     <div className="space-y-5">

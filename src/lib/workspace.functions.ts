@@ -17,10 +17,10 @@ export const updateProfile = createServerFn({ method: "POST" })
       .parse(input),
   )
   .handler(async ({ data, context }) => {
-    const patch: Record<string, unknown> = { updated_at: new Date().toISOString() };
-    if (data.displayName !== undefined) patch["display_name"] = data.displayName;
-    if (data.roleFocus !== undefined) patch["role_focus"] = data.roleFocus;
-    if (data.onboarded) patch["onboarded_at"] = new Date().toISOString();
+    const patch: { updated_at: string; display_name?: string; role_focus?: string | null; onboarded_at?: string } = { updated_at: new Date().toISOString() };
+    if (data.displayName !== undefined) patch.display_name = data.displayName;
+    if (data.roleFocus !== undefined) patch.role_focus = data.roleFocus;
+    if (data.onboarded) patch.onboarded_at = new Date().toISOString();
     const { error } = await context.supabase.from("profiles").update(patch).eq("id", context.userId);
     if (error) throw new Error("Your profile could not be saved. Please try again.");
     return { ok: true };
