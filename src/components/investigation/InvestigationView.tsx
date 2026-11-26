@@ -5,6 +5,7 @@ import { AssessmentBadge, ConfidencePill } from "./Badges";
 import { ClaimCard } from "./ClaimCard";
 import { SourceCard } from "./SourceCard";
 import { ReportView } from "./ReportView";
+import { Replay } from "./Replay";
 import { RelationshipTag } from "./Badges";
 import { Panel, CardSkeleton } from "@/components/common/States";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -61,6 +62,7 @@ export function InvestigationView({ bundle, actions, defaultTab = "claims" }: { 
             ["sources", `Sources (${sources.length})`],
             ["evidence", `Evidence (${evidence.length})`],
             ["graph", "Constellation"],
+            ["replay", "Replay"],
             ["report", "Report"],
           ].map(([value, label]) => (
             <TabsTrigger
@@ -135,6 +137,10 @@ export function InvestigationView({ bundle, actions, defaultTab = "claims" }: { 
           ) : (
             <CardSkeleton rows={5} />
           )}
+        </TabsContent>
+
+        <TabsContent value="replay" className="no-print mt-6">
+          <Replay bundle={bundle} />
         </TabsContent>
 
         <TabsContent value="report" className="mt-6">

@@ -16,6 +16,7 @@ import { Route as DemoRouteImport } from './routes/demo'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedWorkspaceRouteRouteImport } from './routes/_authenticated/_workspace/route'
 import { Route as AuthenticatedOnboardingRouteImport } from './routes/_authenticated/onboarding'
+import { Route as ReportTokenRouteImport } from './routes/report/$token'
 import { Route as AuthenticatedWorkspaceDuelRouteImport } from './routes/_authenticated/_workspace/duel'
 import { Route as AuthenticatedWorkspaceEvidenceRouteImport } from './routes/_authenticated/_workspace/evidence'
 import { Route as AuthenticatedWorkspaceInvestigateRouteImport } from './routes/_authenticated/_workspace/investigate'
@@ -23,6 +24,7 @@ import { Route as AuthenticatedWorkspaceInvestigationsRouteImport } from './rout
 import { Route as AuthenticatedWorkspaceOverviewRouteImport } from './routes/_authenticated/_workspace/overview'
 import { Route as AuthenticatedWorkspaceReportsRouteImport } from './routes/_authenticated/_workspace/reports'
 import { Route as AuthenticatedWorkspaceSettingsRouteImport } from './routes/_authenticated/_workspace/settings'
+import { Route as AuthenticatedWorkspaceInvestigationsIdRouteImport } from './routes/_authenticated/_workspace/investigations_.$id'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -57,6 +59,11 @@ const AuthenticatedOnboardingRoute = AuthenticatedOnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
   getParentRoute: () => AuthenticatedRouteRoute,
+} as any)
+const ReportTokenRoute = ReportTokenRouteImport.update({
+  id: '/report/$token',
+  path: '/report/$token',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedWorkspaceDuelRoute =
   AuthenticatedWorkspaceDuelRouteImport.update({
@@ -100,6 +107,12 @@ const AuthenticatedWorkspaceSettingsRoute =
     path: '/settings',
     getParentRoute: () => AuthenticatedWorkspaceRouteRoute,
   } as any)
+const AuthenticatedWorkspaceInvestigationsIdRoute =
+  AuthenticatedWorkspaceInvestigationsIdRouteImport.update({
+    id: '/investigations_/$id',
+    path: '/investigations/$id',
+    getParentRoute: () => AuthenticatedWorkspaceRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -107,6 +120,7 @@ export interface FileRoutesByFullPath {
   '/demo': typeof DemoRoute
   '/reset-password': typeof ResetPasswordRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/report/$token': typeof ReportTokenRoute
   '/duel': typeof AuthenticatedWorkspaceDuelRoute
   '/evidence': typeof AuthenticatedWorkspaceEvidenceRoute
   '/investigate': typeof AuthenticatedWorkspaceInvestigateRoute
@@ -114,6 +128,7 @@ export interface FileRoutesByFullPath {
   '/overview': typeof AuthenticatedWorkspaceOverviewRoute
   '/reports': typeof AuthenticatedWorkspaceReportsRoute
   '/settings': typeof AuthenticatedWorkspaceSettingsRoute
+  '/investigations/$id': typeof AuthenticatedWorkspaceInvestigationsIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -121,6 +136,7 @@ export interface FileRoutesByTo {
   '/demo': typeof DemoRoute
   '/reset-password': typeof ResetPasswordRoute
   '/onboarding': typeof AuthenticatedOnboardingRoute
+  '/report/$token': typeof ReportTokenRoute
   '/duel': typeof AuthenticatedWorkspaceDuelRoute
   '/evidence': typeof AuthenticatedWorkspaceEvidenceRoute
   '/investigate': typeof AuthenticatedWorkspaceInvestigateRoute
@@ -128,6 +144,7 @@ export interface FileRoutesByTo {
   '/overview': typeof AuthenticatedWorkspaceOverviewRoute
   '/reports': typeof AuthenticatedWorkspaceReportsRoute
   '/settings': typeof AuthenticatedWorkspaceSettingsRoute
+  '/investigations/$id': typeof AuthenticatedWorkspaceInvestigationsIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -138,6 +155,7 @@ export interface FileRoutesById {
   '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/_workspace': typeof AuthenticatedWorkspaceRouteRouteWithChildren
   '/_authenticated/onboarding': typeof AuthenticatedOnboardingRoute
+  '/report/$token': typeof ReportTokenRoute
   '/_authenticated/_workspace/duel': typeof AuthenticatedWorkspaceDuelRoute
   '/_authenticated/_workspace/evidence': typeof AuthenticatedWorkspaceEvidenceRoute
   '/_authenticated/_workspace/investigate': typeof AuthenticatedWorkspaceInvestigateRoute
@@ -145,6 +163,7 @@ export interface FileRoutesById {
   '/_authenticated/_workspace/overview': typeof AuthenticatedWorkspaceOverviewRoute
   '/_authenticated/_workspace/reports': typeof AuthenticatedWorkspaceReportsRoute
   '/_authenticated/_workspace/settings': typeof AuthenticatedWorkspaceSettingsRoute
+  '/_authenticated/_workspace/investigations_/$id': typeof AuthenticatedWorkspaceInvestigationsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -154,6 +173,7 @@ export interface FileRouteTypes {
     | '/demo'
     | '/reset-password'
     | '/onboarding'
+    | '/report/$token'
     | '/duel'
     | '/evidence'
     | '/investigate'
@@ -161,6 +181,7 @@ export interface FileRouteTypes {
     | '/overview'
     | '/reports'
     | '/settings'
+    | '/investigations/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -168,6 +189,7 @@ export interface FileRouteTypes {
     | '/demo'
     | '/reset-password'
     | '/onboarding'
+    | '/report/$token'
     | '/duel'
     | '/evidence'
     | '/investigate'
@@ -175,6 +197,7 @@ export interface FileRouteTypes {
     | '/overview'
     | '/reports'
     | '/settings'
+    | '/investigations/$id'
   id:
     | '__root__'
     | '/'
@@ -184,6 +207,7 @@ export interface FileRouteTypes {
     | '/reset-password'
     | '/_authenticated/_workspace'
     | '/_authenticated/onboarding'
+    | '/report/$token'
     | '/_authenticated/_workspace/duel'
     | '/_authenticated/_workspace/evidence'
     | '/_authenticated/_workspace/investigate'
@@ -191,6 +215,7 @@ export interface FileRouteTypes {
     | '/_authenticated/_workspace/overview'
     | '/_authenticated/_workspace/reports'
     | '/_authenticated/_workspace/settings'
+    | '/_authenticated/_workspace/investigations_/$id'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -199,6 +224,7 @@ export interface RootRouteChildren {
   AuthRoute: typeof AuthRoute
   DemoRoute: typeof DemoRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
+  ReportTokenRoute: typeof ReportTokenRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -252,6 +278,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedOnboardingRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/report/$token': {
+      id: '/report/$token'
+      path: '/report/$token'
+      fullPath: '/report/$token'
+      preLoaderRoute: typeof ReportTokenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/_workspace/duel': {
       id: '/_authenticated/_workspace/duel'
       path: '/duel'
@@ -301,6 +334,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedWorkspaceSettingsRouteImport
       parentRoute: typeof AuthenticatedWorkspaceRouteRoute
     }
+    '/_authenticated/_workspace/investigations_/$id': {
+      id: '/_authenticated/_workspace/investigations_/$id'
+      path: '/investigations/$id'
+      fullPath: '/investigations/$id'
+      preLoaderRoute: typeof AuthenticatedWorkspaceInvestigationsIdRouteImport
+      parentRoute: typeof AuthenticatedWorkspaceRouteRoute
+    }
   }
 }
 
@@ -312,6 +352,7 @@ interface AuthenticatedWorkspaceRouteRouteChildren {
   AuthenticatedWorkspaceOverviewRoute: typeof AuthenticatedWorkspaceOverviewRoute
   AuthenticatedWorkspaceReportsRoute: typeof AuthenticatedWorkspaceReportsRoute
   AuthenticatedWorkspaceSettingsRoute: typeof AuthenticatedWorkspaceSettingsRoute
+  AuthenticatedWorkspaceInvestigationsIdRoute: typeof AuthenticatedWorkspaceInvestigationsIdRoute
 }
 
 const AuthenticatedWorkspaceRouteRouteChildren: AuthenticatedWorkspaceRouteRouteChildren =
@@ -325,6 +366,8 @@ const AuthenticatedWorkspaceRouteRouteChildren: AuthenticatedWorkspaceRouteRoute
     AuthenticatedWorkspaceOverviewRoute: AuthenticatedWorkspaceOverviewRoute,
     AuthenticatedWorkspaceReportsRoute: AuthenticatedWorkspaceReportsRoute,
     AuthenticatedWorkspaceSettingsRoute: AuthenticatedWorkspaceSettingsRoute,
+    AuthenticatedWorkspaceInvestigationsIdRoute:
+      AuthenticatedWorkspaceInvestigationsIdRoute,
   }
 
 const AuthenticatedWorkspaceRouteRouteWithChildren =
@@ -352,6 +395,7 @@ const rootRouteChildren: RootRouteChildren = {
   AuthRoute: AuthRoute,
   DemoRoute: DemoRoute,
   ResetPasswordRoute: ResetPasswordRoute,
+  ReportTokenRoute: ReportTokenRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
